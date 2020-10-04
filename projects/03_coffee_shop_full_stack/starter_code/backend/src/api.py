@@ -112,7 +112,8 @@ def Patch_Drinks(drink_id):
            drink.title = body.get('title')
 
         if 'recipe' in body:
-            drink.recipe = body.get('recipe')
+            #drink.recipe = body.get('recipe')
+            drink.recipe = json.dumps(data['recipe'])
 
         drink.update()
         drinks = Drink.query.order_by(Drink.id).all()
