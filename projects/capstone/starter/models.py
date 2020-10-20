@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_migrate import Migrate
 
-database_name = ""
+database_name = "Casting_Agency"
 database_path = "postgres://{}/{}".format('localhost:5432', database_name)
 
 db = SQLAlchemy()
@@ -51,14 +51,14 @@ class Movie(db.Model):
       def format(self):
           return{
               'id':self.id,
-              'title' = self.title,
-              'release_date'=self.release_date
+              'title':self.title,
+              'release_date':self.release_date
           }
 
 '''
 Actor
 '''
-class Actor(self):
+class Actor(db.Model):
     __tablename__ = 'actors'
 
     id = Column(Integer, primary_key=True)
