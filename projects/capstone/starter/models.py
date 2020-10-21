@@ -20,7 +20,7 @@ def setup_db(app, database_path=database_path):
     db.app = app
     db.init_app(app)
     db.create_all()
-   # migrate = Migrate(app, db)
+    migrate = Migrate(app, db)
 
 '''
 Movies
@@ -34,9 +34,10 @@ class Movie(db.Model):
       release_date = Column(DateTime)
       movie_id = Column(Integer, ForeignKey('actors.id'), nullable=False)
       
-      def __init__(self, title, release_date):
+      def __init__(self, title, release_date, movie_id):
           self.title = title
           self.release_date = release_date
+          self.movie_id = movie_id
 
       def insert(self):
           db.session.add(self)
