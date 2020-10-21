@@ -5,9 +5,9 @@ from jose import jwt
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = 'udfd.us.auth0.com'
+AUTH0_DOMAIN = 'ud-fsnd-capstone.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'https://127.0.0.1:5000'
+API_AUDIENCE = 'show'
 
 ## AuthError Exception
 '''
