@@ -2,7 +2,7 @@
 import os
 import unittest
 import json
-from sqlalchemy import Column, String, Integer, create_engine, DateTime
+#from sqlalchemy import Column, String, Integer, create_engine, DateTime
 from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 from models import setup_db, Movie, Actor
@@ -19,6 +19,11 @@ class CastingAgencyCase(unittest.TestCase):
         self.database_path = "postgres://{}:{}@{}/{}".format(
         'postgres', '123', 'localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
+
+        #self.assistance_token = 'Bearer' + os.environ['assistant']
+        #self.director_token = 'Bearer' + os.environ['assistant']
+        #self.producer_token = 'Bearer' + os.environ['assistant']
+
 
         self.assistance_token = 'Bearer' + str(os.getenv('assistant'))
         self.director_token = 'Bearer' + str(os.getenv('director'))
