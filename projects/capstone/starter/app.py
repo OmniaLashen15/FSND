@@ -6,8 +6,8 @@ from sqlalchemy import exc
 from flask_cors import CORS
 import json
 import psycopg2
-from models import setup_db, Movie, Actor
-from auth.auth import AuthError, requires_auth
+from .models import setup_db, Movie, Actor
+from .auth.auth import AuthError, requires_auth
 sys.path.append(os.getcwd())
 
 db = SQLAlchemy()
@@ -221,15 +221,14 @@ def create_app(test_config=None):
       "error":403,
       "message":"forbidden"
     }), 403 
-  '''
+  
   @app.errorhandler(AuthError)
   def auth_error(error):
     return jsonify({
         "success":False,
         "error":error.status_code,
-        "message":error.error['description']
-    }), error.status_code '''
-   
+        "message":error.error
+    }), error.status_code 
   return app
 
 APP = create_app()

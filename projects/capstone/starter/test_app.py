@@ -79,14 +79,14 @@ class CastingAgencyCase(unittest.TestCase):
         self.assertEqual(data['message'], 'resource not found')
     
     def test_delete_actor(self):
-        res = self.client().delete('/actors/3', headers=self.assistance_header)
+        res = self.client().delete('/actors/3', headers=self.producer_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         
         
     def test_422_if_deleted_actor_not_exist(self):
-        res = self.client().delete('/actors/5000', headers=self.assistance_header)
+        res = self.client().delete('/actors/5000', headers=self.producer_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 422)
         self.assertEqual(data['success'], False)
@@ -109,14 +109,14 @@ class CastingAgencyCase(unittest.TestCase):
         
     
     def test_post_actor(self):
-        res = self.client().post('/actors', json=self.new_actor, headers=self.director_header)
+        res = self.client().post('/actors', json=self.new_actor, headers=self.producer_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code,200)
         self.assertEqual(data['success'], True)
 
     def test_400_if_created_actor_bad_request(self):
        
-       res = self.client().post('/actors', json={'name':'' ,'gender':''}, headers=self.director_header)
+       res = self.client().post('/actors', json={'name':'' ,'gender':''}, headers=self.producer_header)
        data = json.loads(res.data) 
        self.assertEqual(res.status_code, 400)
        self.assertEqual(data['success'], False)
@@ -125,14 +125,14 @@ class CastingAgencyCase(unittest.TestCase):
     
     def test_post_movies(self):
         new_movie = {'title':'greenland','release_date':'23/9/2020','movie_id':10} 
-        res = self.client().post('/movies', json=new_movie, headers=self.assistance_header)
+        res = self.client().post('/movies', json=new_movie, headers=self.producer_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'],True)
         
     
     def test_400_if_created_movie_bad_request(self):
-       res = self.client().post('/movies', json={ }, headers=self.assistance_header)
+       res = self.client().post('/movies', json={ }, headers=self.producer_header)
        data = json.loads(res.data) 
        self.assertEqual(res.status_code, 400)
        self.assertEqual(data['success'], False)
@@ -152,13 +152,13 @@ class CastingAgencyCase(unittest.TestCase):
         self.assertEqual(data['message'], 'resource not found')
 
     def test_patch_movie(self):
-        res = self.client().patch('/movies/25', json={'title':'law abiding citizen'},headers=self.director_header)
+        res = self.client().patch('/movies/25', json={'title':'law abiding citizen'},headers=self.producer_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code,200)
         self.assertEqual(data['success'],True)
 
     def test_patch_movie_not_found(self):
-        res = self.client().patch('/movies/75',headers=self.director_header)
+        res = self.client().patch('/movies/75',headers=self.producer_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
