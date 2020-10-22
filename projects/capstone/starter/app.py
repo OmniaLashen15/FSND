@@ -6,8 +6,8 @@ from sqlalchemy import exc
 from flask_cors import CORS
 import json
 import psycopg2
-from .models import setup_db, Movie, Actor
-from .auth.auth import AuthError, requires_auth
+from models import setup_db, Movie, Actor
+from auth.auth import AuthError, requires_auth
 sys.path.append(os.getcwd())
 
 db = SQLAlchemy()
